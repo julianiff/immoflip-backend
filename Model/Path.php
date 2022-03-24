@@ -11,8 +11,8 @@ class Path
 
     public function getPath(): string
     {
-        return $this->path . " - new stuff adapter";
-    }
+        $age = array("Peter" => 35, "Ben" => 37, "Joe" => 43);
 
-    
+        return json_encode($age);
+    }
 }
