@@ -15,11 +15,9 @@ class Router extends BaseController
         $factory = new UrlFactory();
         $path = $factory->createNewPath($url);
 
-        foreach (self::$routes as $route) {
-            // echo $route["expression"];
+        foreach (self::$routes as $route) {            // echo $route["expression"];
 
-            if ($route["expression"] == $path->getFullPath()) {
-                // var_dump($route);
+            if ($route["expression"] == $path->getFullPath()) {                // var_dump($route);
 
                 return call_user_func($route["fnc"]);
             }

@@ -1,6 +1,6 @@
 <?php
 
-
+require "./Controller/UserController.php";
 include('Router.php');
 
 Router::add('/', function () {
@@ -17,4 +17,7 @@ Router::add('/hans', function () {
 Router::add('/bun', function () {
     echo 'hey das ist ein bun';
 });
-Router::route($_SERVER['REQUEST_URI']);
+
+Router::add('/user/15', function () {
+    UserController::getUserById();
+});
