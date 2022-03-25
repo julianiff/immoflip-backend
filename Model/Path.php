@@ -9,10 +9,14 @@ class Path
         $this->path = $path;
     }
 
-    public function getPath(): string
+    public function getFullPath(): string
     {
-        $age = array("Peter" => 35, "Ben" => 37, "Joe" => 43);
+        return $this->path;
+    }
 
-        return json_encode($age);
+    public function getFirstSegment(): string
+    {
+        $segments = explode("/", $this->path);
+        return $segments >= 1 ? $segments[1] : "";
     }
 }

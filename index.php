@@ -1,9 +1,7 @@
 <?php
 
 require "./lib/bootstrap.php";
-require "./Controller/Router.php";
 
-$uri = explode('/', $_SERVER['REQUEST_URI']);
-
-$router = new Router();
-echo $router->routeTo($uri);
+include './Controller/Routing.php';
+// $router = new Router();
+// echo $router->route($_SERVER['REQUEST_URI']);

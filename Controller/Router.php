@@ -3,19 +3,38 @@
 declare(strict_types=1);
 
 require 'BaseController.php';
-require './Model/Path.php';
+require './Service/UrlFactory.php';
 
 class Router extends BaseController
 {
 
-    public function routeTo(array $path): string
+    private static $routes = array();
+
+    public static function route(string $url)
     {
+        $factory = new UrlFactory();
+        $path = $factory->createNewPath($url);
 
-        if ($path[1] === "test") {
-            $path = new Path($path[1]);
-            return $path->getPath();
+        foreach (self::$routes as $route) {
+            // echo $route["expression"];
+
+            if ($route["expression"] == $path->getFullPath()) {
+                // var_dump($route);
+
+                return call_user_func($route["fnc"]);
+            }
         }
+        echo "nothing found";
+    }
 
-        return $path[1];
+
+
+    public static function add($expression, $function, $method = 'get')
+    {
+        array_push(self::$routes, array(
+            'expression' => $expression,
+            'fnc' => $function,
+            'method' => $method
+        ));
     }
 }
